@@ -5,13 +5,12 @@ import com.jiuaoedu.evaluation.domain.aggregate.EvaluationResult;
 import com.jiuaoedu.evaluation.pojo.dto.EvaluationResultDTO;
 import com.jiuaoedu.evaluation.pojo.dto.IndicatorDTO;
 import com.jiuaoedu.student.api.StudentApi;
-import com.jiuaoedu.student.domain.aggregate.Student;
 import com.jiuaoedu.student.pojo.dto.StudentAll;
 import com.jiuaoedu.teacher.api.TeacherApi;
 import com.jiuaoedu.teacher.pojo.dto.TeacherAll;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +36,10 @@ public class ResultDTOAssembler {
         dto.setIndicatorId(result.getIndicatorId());
         dto.setStudentId(result.getStudentId());
         dto.setTeacherId(result.getTeacherId());
+        LocalDateTime createTime = result.getCreateTime();
+        LocalDateTime updateTime = result.getUpdateTime();
+        dto.setCreateTime(createTime);
+        dto.setUpdateTime(updateTime);
 
         TeacherAll teacher = teacherApi.findById(result.getTeacherId());
         dto.setTeacherName(teacher.getUsername());

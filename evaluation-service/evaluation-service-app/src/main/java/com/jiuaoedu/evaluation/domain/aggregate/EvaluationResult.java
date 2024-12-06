@@ -6,6 +6,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -32,11 +33,12 @@ public class EvaluationResult extends AbstractEntity {
 
     @CreatedDate
     @Column(name = "create_time")
-    private Date createTime;
+    //类型记得设置为localdatetime,加local的不然直接将Date这种传到前端显示的是美国时间而不是本地时间,有时差
+    private LocalDateTime createTime;
 
     @LastModifiedDate
     @Column(name = "update_time")
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
     public void setIndicatorId(Long indicatorId) {
         this.indicatorId = indicatorId;
@@ -71,11 +73,11 @@ public class EvaluationResult extends AbstractEntity {
         return studentId;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public Date getUpdateTime() {
+    public LocalDateTime getUpdateTime() {
         return updateTime;
     }
 }

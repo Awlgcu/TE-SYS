@@ -2,6 +2,9 @@ package com.jiuaoedu.evaluation.pojo.dto;
 
 import com.jiuaoedu.share.Command;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 /**
  * @description:
  * @author: Rick
@@ -24,6 +27,25 @@ public class EvaluationResultDTO implements Command {
     private Long studentId;
 
     private String studentName;
+
+    private LocalDateTime createTime ;
+    private LocalDateTime updateTime ;
+
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalDateTime createTime) {
+        this.createTime = createTime;
+    }
 
     public Long getIndicatorId() {
         return indicatorId;
