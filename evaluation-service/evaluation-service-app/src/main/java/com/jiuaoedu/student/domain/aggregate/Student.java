@@ -1,11 +1,9 @@
 package com.jiuaoedu.student.domain.aggregate;
 
 import com.jiuaoedu.share.AbstractUser;
+import com.jiuaoedu.student.infrastracture.converter.AddressConverter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -22,6 +20,9 @@ public class Student extends AbstractUser {
     @OneToMany(mappedBy = "student", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     private List<TeacherSource> teachers;
 
+    @Convert(converter = AddressConverter.class)
+    private Address address;
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -34,6 +35,14 @@ public class Student extends AbstractUser {
     }
     public void setGender(String gender){
         this.gender = gender;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public List<TeacherSource> getTeachers() {

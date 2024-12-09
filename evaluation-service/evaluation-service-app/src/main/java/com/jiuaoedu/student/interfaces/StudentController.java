@@ -79,4 +79,9 @@ public class StudentController implements StudentApi {
     public List<StudentAll> findByNameLike(@RequestParam @NotNull String name){
         return studentQuery.findByNameLike(name);
     }
+
+    @GetMapping("/address")
+    public void addAddress(@RequestParam @NotNull Long id){
+        studentApplication.addAddress(id);
+    }
 }

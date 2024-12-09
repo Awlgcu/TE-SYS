@@ -1,5 +1,6 @@
 package com.jiuaoedu.student.application;
 
+import com.jiuaoedu.student.domain.aggregate.Address;
 import com.jiuaoedu.student.pojo.cmd.StudentCreate;
 import com.jiuaoedu.student.pojo.cmd.StudentUpdate;
 import com.jiuaoedu.student.pojo.cmd.TeacherEdit;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * @description:
@@ -66,12 +68,26 @@ public class StudentApplicationImpl implements StudentApplication {
         while(iterator.hasNext()) {
             TeacherSource teacherSource = iterator.next();
             if (teacherSource.getTeacherId().equals(cmd.getTeacherId())) {
-                //todo:双向解绑???,teacherSource没有仓储!
-//                iterator.remove();
                 teacherSource.detach();
             }
         }
         //别忘了save更新student
         studentRepository.save(student);
+    }
+
+    @Override
+    public void addAddress(Long id) {
+        Student student = studentRepository.findById(id).get();
+        Address address = new Address();
+        address.setCity("chengdu");
+        address.setProvince("sichuan");
+        address.setDistrict("shuangliu");
+        student.setAddress(address);
+        //记得更新!
+        studentRepository.save(student);
+
+        //再查出来检验一下
+        Student stu = studentRepository.findById(id).get();
+        System.out.println(stu.getAddress());
     }
 }

@@ -17,4 +17,6 @@ public interface StudentApplication {
     void deleteStudent(Long id);
     void addTeacher(TeacherEdit cmd);
     void removeTeacher(TeacherEdit cmd);
+
+    void addAddress(Long id);
 }
