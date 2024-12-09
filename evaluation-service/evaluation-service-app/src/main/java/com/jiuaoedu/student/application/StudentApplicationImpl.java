@@ -86,8 +86,5 @@ public class StudentApplicationImpl implements StudentApplication {
         //记得更新!
         studentRepository.save(student);
 
-        //再查出来检验一下
-        Student stu = studentRepository.findById(id).get();
-        System.out.println(stu.getAddress());
     }
 }

@@ -1,5 +1,6 @@
 package com.jiuaoedu.student.infrastracture.converter;
 
+import com.jiuaoedu.json.JsonUtils;
 import com.jiuaoedu.student.domain.aggregate.Address;
 
 import javax.persistence.AttributeConverter;
@@ -14,7 +15,7 @@ import javax.persistence.AttributeConverter;
 public class AddressConverter implements AttributeConverter<Address,String> {
     @Override
     public String convertToDatabaseColumn(Address address) {
-        return address.toString();
+        return JsonUtils.serialize(address);
     }
 
     @Override
@@ -23,12 +24,7 @@ public class AddressConverter implements AttributeConverter<Address,String> {
         if (dbData == null||dbData.equals("")) {
             return null;
         }
+        return JsonUtils.parse(dbData, Address.class);
         //通过空校验则可以开始转换,一般通过json转换工具实现
-        Address address = new Address();
-        String[] strings = dbData.split("\\.");
-        address.setProvince(strings[0]);
-        address.setCity(strings[1]);
-        address.setDistrict(strings[2]);
-        return address;
     }
 }

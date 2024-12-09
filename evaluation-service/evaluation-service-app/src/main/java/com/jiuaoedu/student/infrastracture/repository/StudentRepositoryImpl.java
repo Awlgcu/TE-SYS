@@ -4,6 +4,7 @@ import com.jiuaoedu.student.pojo.dto.StudentDTO;
 import com.jiuaoedu.student.domain.aggregate.Student;
 import com.jiuaoedu.student.domain.gateway.repository.StudentRepository;
 import com.jiuaoedu.student.infrastracture.repository.jpa.StudentJpaRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;

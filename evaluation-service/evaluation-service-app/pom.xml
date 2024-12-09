@@ -77,6 +77,14 @@
             <version>2.0.1.Final</version>
         </dependency>
 
+
+<!--        json工具引入-->
+        <dependency>
+            <groupId>com.jiuaoedu</groupId>
+            <artifactId>json-spring-boot-starter</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
 
